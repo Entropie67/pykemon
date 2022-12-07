@@ -1,9 +1,9 @@
 class Pokemon:
 
     def __init__(self, nom1, nom2, nom3, power, hp, exp=0):
-        self.stade = (exp//1000) % 3
+        self.stade = (exp//1000)
         self.noms = [nom1, nom2, nom3, "Méga-"+nom3]
-        self.nom = self.noms[self.stade]
+        self.nom = self.noms[self.stade if self.stade <= 4 else 4]
         self.power = power
         self.hp = hp
         self.exp = exp
@@ -12,18 +12,18 @@ class Pokemon:
 
     def _evolution(self):
 
-        if self.stade >= 2:
-            print(f"{self.nom} ne peut plus évoluer. Sa puissance est au max")
-        else:
-            print("\n *** Evolution *** \n")
-            print(f"Votre{self.nom} devient un {self.noms[self.stade]}")
-            print(" \n ***           *** \n")
-            self.nom = self.noms[self.stade]
+
+        print("\n *** Evolution *** \n")
+        print(f"Votre{self.nom} devient un {self.noms[self.stade if self.stade <= 3 else 3]}")
+        print(" \n ***           *** \n")
+        self.nom = self.noms[self.stade if self.stade <= 3 else 3]
 
     def add_xp(self, exp):
         self.exp += exp
-        if self.stade != (exp//1000) % 3:
-            self.stade = (exp//1000) % 3
+        if self.stade != (exp//1000):
+            print(self.stade)
+            self.stade = (exp//1000)
+            print(self.stade)
             self._evolution()
 
 
@@ -35,5 +35,5 @@ class Pokemon:
 abra = Pokemon("Abra", "Kadabra", "Alakazam", 1000, 100)
 
 print(abra.nom)
-abra.add_xp(1000)
+abra.add_xp(6000)
 print(abra.nom)
