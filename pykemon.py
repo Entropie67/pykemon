@@ -15,8 +15,9 @@ class Pokemon:
         if self.stade >= 2:
             print(f"{self.nom} ne peut plus évoluer. Sa puissance est au max")
         else:
-            print(" \n *** Evolution *** \n")
+            print("\n *** Evolution *** \n")
             print(f"Votre{self.nom} devient un {self.noms[self.stade]}")
+            print(" \n ***           *** \n")
             self.nom = self.noms[self.stade]
 
     def add_xp(self, exp):
@@ -26,6 +27,7 @@ class Pokemon:
             self._evolution()
 
 
+
  ############################
  # TEST
  ###########################
@@ -33,4 +35,5 @@ class Pokemon:
 abra = Pokemon("Abra", "Kadabra", "Alakazam", 1000, 100)
 
 print(abra.nom)
-
+abra.add_xp(1000)
+print(abra.nom)
